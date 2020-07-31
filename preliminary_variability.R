@@ -13,47 +13,95 @@ glimpse(var_raw)
 #organization level overall
 plot1<-ggplot(var_raw, aes(x=organization_level))+
   geom_bar()+
-  theme_classic()
+  theme_bw()+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
+#organizarion level colored by study 
+plot2<-ggplot(var_raw, aes(x=organization_level, fill=as.factor(study_number)))+
+  geom_bar()+
+  theme_bw()+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+  labs(title="Study organization level distribution")
 
 #organization level colored by variation level 
-plot2<-ggplot(var_raw, aes(x=organization_level, fill=variation_color))+
+plot3<-ggplot(var_raw, aes(x=organization_level, fill=variation_color))+
   geom_bar()+
-  theme_classic()
+  theme_bw()+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+  labs(title="Variation in different organization levels")
 
 #organization level broken out by independent variable
-plot3<-ggplot(var_raw, aes(x=organization_level, fill=independent_variable))+
+plot4<-ggplot(var_raw, aes(x=organization_level, fill=independent_variable))+
   geom_bar()+
-  theme_classic()
+  theme_bw()+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+  labs(title="Independent variables in different organization levels")
 
 #independent variables overall
-plot4<-ggplot(var_raw, aes(x=independent_variable))+
+plot5<-ggplot(var_raw, aes(x=independent_variable))+
   geom_bar()+
-  theme_classic()
+  theme_bw()+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+#dependent variables overall
+plot6<-ggplot(var_raw, aes(x=dependent_variable))+
+  geom_bar()+
+  theme_bw()+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
 ###################
 ggplot(var_raw, aes(x=generation_time_standardized_days, y=duration_standardized_days, color=study_number))+
   geom_point()+
-  theme_classic()
+  theme_bw()+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
 ###filtering for majority studies generation time
-var_marjorityGT<-filter(var_raw, generation_time_standardized_days < 110, duration_standardized_days < 100)
+var_majority<-filter(var_raw, generation_time_standardized_days < 110, duration_standardized_days < 100)
 
 #scatterplot of GT vs experiment duration coded by organization level
-ggplot(var_marjorityGT, aes(x=generation_time_standardized_days, y=duration_standardized_days, shape=organization_level))+
+ggplot(var_majority, aes(x=generation_time_standardized_days, y=duration_standardized_days, shape=organization_level, color=organization_level))+
   geom_jitter()+
-  theme_classic()
+  theme_classic()+
+  labs(title="Generation time (days) vs Experiment duration (days) by organization level")
 
-##correlation plot 
+######correlation plots#####
+#generation time vs duration--kendall correlation
+ggscatter(var_majority, x = "generation_time_standardized_days", y = "duration_standardized_days", 
+          add = "reg.line", conf.int = TRUE, 
+          cor.coef = TRUE, cor.method = "kendall",
+          xlab = "Generation time (days)", ylab = "Experiment Duration (days)")
+#generation time vs duration--pearson correlation 
+ggscatter(var_majority, x = "generation_time_standardized_days", y = "duration_standardized_days", 
+          add = "reg.line", conf.int = TRUE, 
+          cor.coef = TRUE, cor.method = "pearson",
+          xlab = "Generation time (days)", ylab = "Experiment Duration (days)")
 
-ggscatter(var_marjorityGT, x = "generation_time_standardized_days", y = "duration_standardized_days", 
+#filtering by organization level 
+#individual 
+var_individual<-filter(var_majority, organization_level == "individual", generation_time_standardized_days > 0)
+
+#population 
+var_pop<-filter(var_majority, organization_level == "population", generation_time_standardized_days > 0)
+
+#community
+var_comm<-filter(var_majority, organization_level == "community", generation_time_standardized_days > 0)
+
+
+#generation time vs duration at individual level 
+a<-ggscatter(var_individual, x = "generation_time_standardized_days", y = "duration_standardized_days", 
           add = "reg.line", conf.int = TRUE, 
           cor.coef = TRUE, cor.method = "kendall",
           xlab = "Generation time (days)", ylab = "Experiment Duration (days)")
 
-ggscatter(var_marjorityGT, x = "generation_time_standardized_days", y = "duration_standardized_days", 
+#generation time vs duration at population level 
+b<-ggscatter(var_pop, x = "generation_time_standardized_days", y = "duration_standardized_days", 
           add = "reg.line", conf.int = TRUE, 
-          cor.coef = TRUE, cor.method = "pearson",
+          cor.coef = TRUE, cor.method = "kendall",
+          xlab = "Generation time (days)", ylab = "Experiment Duration (days)")
+#generation time vs duration at community level 
+c<-ggscatter(var_comm, x = "generation_time_standardized_days", y = "duration_standardized_days", 
+          add = "reg.line", conf.int = TRUE, 
+          cor.coef = TRUE, cor.method = "kendall",
           xlab = "Generation time (days)", ylab = "Experiment Duration (days)")
 
   
