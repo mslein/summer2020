@@ -77,6 +77,13 @@ ggplot(var_majority, aes(x=generation_time_standardized_days, y=duration_standar
   geom_jitter()+
   theme_classic()+
   labs(title="Generation time (days) vs Experiment duration (days) by organization level")
+#scatterplot of GT vs period of flucuation 
+ggplot(var_raw, aes(x=generation_time_standardized_days, y=flux_period_days, shape=organization_level, color=organization_level))+
+  geom_jitter(alpha=0.5, size=4)+
+  theme_classic()+
+  labs(title="Generation time (days) vs Period of fluctuation (days) by organization level")
+
+
 
 ######correlation plots#####
 #generation time vs duration--kendall correlation
