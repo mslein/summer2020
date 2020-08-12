@@ -71,18 +71,25 @@ ggplot(var_raw, aes(x=generation_time_standardized_days, y=duration_standardized
 
 ###filtering for majority studies generation time
 var_majority<-filter(var_raw, generation_time_standardized_days < 110, duration_standardized_days < 100)
+var_flux<-filter(var_raw, flux_period_days < 5)
 
 #scatterplot of GT vs experiment duration coded by organization level
 ggplot(var_majority, aes(x=generation_time_standardized_days, y=duration_standardized_days, shape=organization_level, color=organization_level))+
   geom_jitter()+
   theme_classic()+
   labs(title="Generation time (days) vs Experiment duration (days) by organization level")
-#scatterplot of GT vs period of flucuation 
+#scatterplot of GT vs period of fluctuation 
 ggplot(var_raw, aes(x=generation_time_standardized_days, y=flux_period_days, shape=organization_level, color=organization_level))+
   geom_jitter(alpha=0.5, size=4)+
   theme_classic()+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))+
   labs(title="Generation time (days) vs Period of fluctuation (days) by organization level")
-
+#scatterplot of GT vs period of fluctuation (less than five day period)
+ggplot(var_flux, aes(x=generation_time_standardized_days, y=flux_period_days, shape=organization_level, color=organization_level))+
+  geom_jitter(alpha=0.5, size=4)+
+  theme_classic()+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+  labs(title="Generation time (days) vs Period of fluctuation (less than 5 days) by organization level")
 
 
 ######correlation plots#####
