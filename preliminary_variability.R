@@ -85,11 +85,11 @@ ggplot(var_raw, aes(x=generation_time_standardized_days, y=flux_period_days, sha
   theme(axis.text.x = element_text(angle = 45, hjust = 1))+
   labs(title="Generation time (days) vs Period of fluctuation (days) by organization level")
 #scatterplot of GT vs period of fluctuation (less than five day period)
-ggplot(var_flux, aes(x=generation_time_standardized_days, y=flux_period_days, shape=organization_level, color=organization_level))+
-  geom_jitter(alpha=0.5, size=4)+
+ggplot(var_raw, aes(x=generation_time_standardized_days, y=flux_period_days, color=organization_level))+
+  geom_jitter(alpha=0.3, size=4)+
   theme_classic()+
   theme(axis.text.x = element_text(angle = 45, hjust = 1))+
-  labs(title="Generation time (days) vs Period of fluctuation (less than 5 days) by organization level")
+  labs(title="Generation time (days) vs Period of fluctuation by organization level")
 
 
 ######correlation plots#####
