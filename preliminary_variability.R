@@ -1,7 +1,4 @@
 ####Preliminary plots of extracted current studies 
-install.packages("lubdriate")
-install.packages("ggpubr")
-install.packages("editrules")
 library(tidyverse)
 library(lubridate)
 library(dplyr)
@@ -132,4 +129,17 @@ plot13<-ggplot(slimdays_GTfp, aes(x=as.numeric(generation_time_standardized_days
   xlab("Generation time (days)")+
   ylab("Period of fluctuation (days)")+
   facet_wrap(~variation_color)
+
+
+
+plot14<-ggplot(slimdays_GTfp, aes(x=as.numeric(generation_time_standardized_days), y=flux_period_days, shape=`larger group`, color=organization_level))+
+  geom_jitter(alpha=0.5, size=4)+
+  theme_classic(base_size=15)+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+  theme(plot.title = element_text(size = 14, face = "bold"),
+        legend.title=element_text(size=12), 
+        legend.text=element_text(size=11))+
+  labs(title="Generation time (< 90 days) vs Period of fluctuation (< 2 days) by larger organism group")+
+  xlab("Generation time (days)")+
+  ylab("Period of fluctuation (days)")
   
