@@ -1,0 +1,190 @@
+---
+title: "Environmental Variability Review (manuscript)"
+author: "Maggie Slein"
+date: "Summer 2020"
+output: pdf_document
+fontsize: 11pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+var_raw<-read_csv("varMATRIX.csv")
+slimdays_GTfp<-filter(var_raw, generation_time_standardized_days < 90, flux_period_days < 2)
+```
+
+
+# Main objective 
+
+To summarize current field of environmental variation across all levels of biological organization and the pitfalls of current inquiries
+
+
+# Abstract 
+
+Climate change continues to push the environment and its inhabitants to the brink of their limits, albeit thermally or spatially, highlighting the importance of organisms' ability to cope in a more variable, unreliable, and stochastic world. While recent studies have demonstrated that increasing the non-linearity of thermal patterns is more detrimental to organismal performance than simply increases in the temperature (Vasseur et al 2014), there still remains a lack of agreement in the field of ecology as to how both variation and variation type influences biological responses at all levels of biological organization. Here, we aim to describe patterns of variability study in the field of ecology across all levels of organization, from changes in amplitude to changes in the predictability of variation, and the contrast environmental variation studies between different levels of organization. In summarizing variation types across the field, we aim to
+
+
+# Introduction
+
+Understanding the limits of performance for organisms, populations, communities, and ecosystems has been a pertinent field of study in ecology for the last several decades (cite). However, climate change has burgeoned a revival of those questions in the face of a rapidly changing world, particularly in an increasingly variable world. Environmental variation has appeared as several terms (alternating, fluctuating, varying) to describe a counter to constant conditions in a variety of performance and dynamics studies at varying levels of biological organization (Resilva et al 2014, etc). Variation treatments often feature a range of temperatures rather than a discrete constant temperature, however, detailed patterns of variation were sporadically reported (cite). Beyond serving as an important counter to constant conditions, environmental variation has been partitioned into three subfields: temporal variation, spatial variation, and spatiotemporal variation (the interaction between both) (Di Cecco and Gouhier et al 2017). Temporal variation manipulates an environmental variable over a period of time to understand performance dynamics at the scale of interest, while spatial variation manipulates access to environmental space to understand how it affects persistence (cite). More recently, several studies have investigated the interaction between both temporal and spatial variation to understand which of the two is the dominating factor in patterns of variation (Vasseur and Fox 2009, Gonzalez and Holt 2002, Matthews and Gonzalez 2007, Fontaine and Gonzalez 2005). While these different categories are key for deducing the effects of variation in both space and time, the manipulation of variation within those groups is of particular interest to uncovering its complete effects on the environment.
+
+Altering the frequency of environmental variation is not a new concept in the field of ecology (cite). However, Vasseur and Yodzis’ (2004) emphasis of the importance of environmental variation color in biological processes responded to and coincided with several community (cite--Descamps-Julien and Gonzalez 2005, Long et al 2007) and population (Orland and Lawlor 2004) studies focused explicitly on how the color of environmental variation causes significant shifts in response patterns both temporally and spatially. Broadly, frequency (1/T, T=period) is a measure of the number of occurrences of a repeating event per unit time (cite). With respect to environmental variation, longer periods correspond to lower frequencies and shorter periods correspond to higher frequencies. Colloquially, “reddened series” have become synonymous with lower frequencies while “whitened series” have become synonymous with higher frequencies. Vasseur and Yodzis (2004) underscore that “an  important  characteristic of  environmental noise is its spectrum, which describes the variance as a sum of sinusoidal waves of different frequencies.” Reddened series feature differing amounts of variance across time, whereas whittened series feature equal variance across time. Reddened series are also referred to as autocorrelated series, such that due to their periodic nature, organisms can track their periodicity accordingly. Autocorrelation is of particular importance to the field of ecology as over the last several decades, environmental variables (like temperature) have become more autocorrelated and are predicted to become increasingly correlated as a result of climate change (Matthews and Gonzalez 2006, Wiggley et al 1998). Several articles have cited the importance and dominance of autocorrelated variation in driving and environmental patterns, from inflationary population effects in conjunction with dispersal (cite) to population synchrony (cite). While it would seem that the color spectrum of variation is of pressing importance, these studies remain a limited area of study nearly a decade and a half later, with most studies continuing to focus on periodic, diurnal fluctuations in amplitude (cite). 
+
+
+# Methods
+
+To investigate variation type, duration, and relevance across all levels of biological organization, we framed our review around these guiding questions:
+
+1. What studies have been conducted in which environmental variability has been the treatment variable (all else being controlled)? 
+2. Can we summarize what types of studies have been done and where there are key gaps? 
+3. What aspect environmental variability was varied (SD, autocorrelation)? 
+4. What biological organization of response variables?
+5. Can this be augmented with less-controlled studies where environmental variation occurs naturally or as a by-product of other treatment?
+
+Our methods to answer these questions entailed a cursory examination of a handful of foundation patterns to pilot preliminary conclusions with respect to variation type and fluctuation period with respect to generation time. We then summarized our conclusions from pilot work below.
+
+After compiling all the different response variables, we decided to focus on the effect of environmental variation on rates across all levels of biological organization and conducted a systematic review of the literature using a Web of Science search with the key terms: “environmental variability” and rate and ecology. That search yielded over 1000 studies and was ultimately pared down to X number of studies for this analysis.
+
+
+# Pilot Conclusions
+
+**Conclusion 1:** Generation time is not an accurate predictor for the period of fluctuation across all levels of organization
+
+```{r, echo=FALSE}
+ggplot(var_raw, aes(x=as.numeric(generation_time_standardized_days), y=flux_period_days, shape=`larger group`, color=organization_level))+
+  geom_jitter(alpha=0.5, size=4)+
+  theme_classic(base_size=15)+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+  theme(plot.title = element_text(size = 14, face = "bold"),
+        legend.title=element_text(size=12), 
+        legend.text=element_text(size=11))+
+  labs(title="Generation time (days) vs Period of fluctuation (days) 
+       by organization level")+
+  xlab("Generation time (days)")+ 
+  ylab("Period of fluctuation (days)")
+```
+*Figure 1. Generation time (hours) and period of fluctuation (hours) across different levels of biological organization (community, host-parasite, individual, population, predator-prey) and larger organisms groups (plants, plankton, fish, aquatic invertebrates, and amphibians.*
+
+
+Nearly all organismal and population level studies interested in thermal performance only consider diurnal patterns of fluctuations, often varying the range of temperatures or the amplitude over a daily cycle. Few explicitly reference their justification behind the period of the fluctuation, perhaps assuming a daily period is intuitive based current environmental patterns (circadian rhythm, diel vertical migration, etc). Ironically, the small population of ecological studies focused on environmental color (variation frequency) are some of the only studies to explicitly account for study organisms relative generation times to the periodicity of the fluctuations induced (Orland and Lawler 2004, Fontaine and Gonzalez 2005). These studies emphasize that there is likely to be little effect of variation on performance if the period of the fluctuations is less than the organisms generation time, which, it appears they often are. Orland and Lawler (2004) conclude that the longer period of their fluctuation regime was the driving factor in their autocorrelated treatment, suggesting that longer periodicity may have an important effect on performance. Similarly, Fontaine and Gonzalez (2005) justify the two periods of their variation treatments as they are relative to the generation time of the predator’s generation time and the life span. Both of these studies featured fluctuation periods much long than most studies, with periods fluctuating over more than 5 days.
+
+The mismatch between generation time and period of fluctuation is apparent, with nearly all studies featuring generation times of less than 100 days and fluctuation periods of less than 2 days (figure 1). This pattern speaks to an emphasis on diurnal fluctuations over potentially longer periods of fluctuation, which appears to contradict predictions for increased autocorrelation in the environment and suggestions to look at longer periods of fluctuation (Orland and Lawlor). 
+
+
+
+
+**Conclusion 2:** Periodic variation on a diurnal period is prioritized in organismal level studies, both periodic and colored variation are prioritized in population level studies, while community level studies prioritize stochastic and autocorrelated variation and do so on longer periods
+
+```{r, echo=FALSE}
+ggplot(slimdays_GTfp, aes(x=as.numeric(generation_time_standardized_days), y=flux_period_days, shape=organization_level, color=organization_level))+
+  geom_jitter(alpha=0.5, size=4)+
+  theme_classic(base_size=15)+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+  theme(plot.title = element_text(size = 14, face = "bold"),
+        legend.title=element_text(size=12), 
+        legend.text=element_text(size=11))+
+  labs(title="Generation time (< 90 days) vs Period of fluctuation (< 2 days) 
+       by variation color")+
+  xlab("Generation time (days)")+
+  ylab("Period of fluctuation (days)")+
+  facet_wrap(~variation_color)
+```
+Figure 2. Generation time (days) and period of fluctuation (days) across all levels of biological organization (individual, population, community, host-parasite, predator-prey) paneled by whether utilized colored variation (red or white colored noise) or neglected to do so (not considered)
+
+```{r, echo=FALSE}
+ggplot(slimdays_GTfp, aes(x=as.numeric(generation_time_standardized_days), y=flux_period_days, shape=`larger group`, color=organization_level))+
+  geom_jitter(alpha=0.5, size=4)+
+  theme_classic(base_size=15)+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+  theme(plot.title = element_text(size = 14, face = "bold"),
+        legend.title=element_text(size=12), 
+        legend.text=element_text(size=11))+
+  labs(title="Generation time (< 90 days) vs Period of fluctuation (< 2 days) 
+       by larger organism group")+
+  xlab("Generation time (days)")+
+  ylab("Period of fluctuation (days)")+
+  facet_wrap(~variation_color)
+```
+*Figure 3. Generation time (days) and period of fluctuation (days) across all levels of biological organization (individual, population, community, host-parasite, predator-prey) and larger organism grouping (amphibian, aquatic invert, fish, insect, plankton, plant) paneled by whether utilized colored variation (red or white colored noise) or neglected to do so (not considered)*
+
+
+
+In addition to lacking diversity in fluctuation period as well as organismal generation time, most of the studies featuring longer periods occurred at the population level and were exclusively planktonic population studies (figure 1). Most studies exclusively focused on variation type featured planktonic communities and were explicitly interested in both generation time and varying fluctuation periods (Orland and Lawlor 2004, Fontaine and Gonzalez 2005, etc).
+
+Most studies that did not account for variation color were at the individual level exclusively and were almost exclusively insect based studies (Figure 3). The emphasis on more predictable variation, simply amplifying current patterns of variability is a hallmark of these studies (cite). This theme is common across many organismal level studies interested in non-rate responses (development size, shape, egg load, etc.) (cite), population level studies interested in rate responses (growth rate, development time, fecundity, longevity, etc.) (cite). Given that most TPC studies are most interested in the organismal or population level responses to short term variation in nature (as TPC are usually on a 24 hours cycle), it is not surprising that most are interested in variation in amplitude and less in the additional stochasticity present in the natural environment. Khelifa et al (2019) demonstrated that correcting for non-linearities with high resolution data when comparing two laboratory temperature treatments, one constant and one diurnally fluctuating, allows for harmonious thermal performance between the two treatment groups. However, when attempting to accomplish the same but with field observations, featuring two treatments, one constant and one ambient measurement of field conditions over time, their methods proved unsuccessful in accurately predicting thermal performance. Khelifa et al highlights the importance of ambient, stochastic variation in accurately predicting thermal performance, as they conclude that variability studies under laboratory conditions may underestimate thermal performance. While an important conclusion, it is one that is at odds with what the collection of literature on environmental variation has advocated for (and disagrees on). It has been established and continually reinforced that environmental variation has become increasingly autocorrelated over the last several decades and is predicted to continue to do so under climate change. Though not explicitly referenced, one can imply that Khelifa et al’s conclusions about field conditions needing to be prioritized over lab studies comment on the need for more explicit investigation of autocorrelated variation. 
+
+
+
+
+**Conclusion 3:** Larger organismal groups and biological organization level feature delineations in study interests and design 
+
+
+
+```{r, echo=FALSE}
+ggplot(slimdays_GTfp, aes(x=as.numeric(generation_time_standardized_days), y=flux_period_days, shape=`larger group`, color=organization_level))+
+  geom_jitter(alpha=0.5, size=4)+
+  theme_classic(base_size=15)+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+  theme(plot.title = element_text(size = 14, face = "bold"),
+        legend.title=element_text(size=12), 
+        legend.text=element_text(size=11))+
+  labs(title="Generation time (< 90 days) vs Period of fluctuation (< 2 days) 
+       by larger organism group")+
+  xlab("Generation time (days)")+
+  ylab("Period of fluctuation (days)")
+```
+*Figure 4. Generation time (days) and period of fluctuation (days) across all levels of biological organization (individual, population, community, host-parasite, predator-prey) and larger organism grouping (amphibian, aquatic invert, fish, insect, plankton, plant)*
+
+
+
+
+Most studies were concentrated at a finer scale that the ranges of generation times and fluctuation periods than the range allowed for (figure 1). In focusing on the concentration of studies featuring generation times of less than 90 days and fluctuations periods of less than 2 days, patterns with respect to biological organization and larger organismal groups emerged (figure 4). Limited studies were conducted of plankton at the individual level and insects at the community level. Additionally, almost all planktonic studies utilized organisms with generations times of less than 10 days, while almost all insect based studies utilized organisms with a broader range of  generation times, from 0 to less than 40 days. 
+
+
+
+
+
+
+
+
+
+
+
+
+# Additional themes/notes:
+Orland and Lawler--importance of generation time in periodicity of fluctuation (longer period features more variability
+
+Gonzalez and Holt--random fluctuations but between two discrete temperatures, not a natural range or acclimate period to arrive at either high or low temperatures--also diurnal cycle
+
+From Matthews 2007 
+“These dynamics may become more evident under the influence of anthropogenic climate change, which is believed to show increasingly autocorrelated fluctuations (Wigley et al. 1998).”
+
+Fontaine and Gonzalez
+Explicitly reference that the two fluctuation period featured in both red and white series were to correspond with the generation time of the rotifer and the lifetime of the rotifer and the mean prey densities used in the study 
+
+“Theory predicts that populations are unlikely to be greatly influenced by environmental fluctuations with a period inferior to the characteristic response time (1/r) of a population, which for B. calyciflorus, at 208C, is 5 d. This suggests that the dominance of the nine day period in the reddened resource fluctuations was responsible for this effect, because no synchrony was observed in the white treatment where the 9-d period had the same power as the 5-d period. More specifically, it is the nine day periodicity of the minima in C. vulgaris densities that is the likely cause of this synchrony. Kirk (1998) demonstrated that even brief periods of starvation (or very low algal densities) can induce reduced fecundity and very rapid mortality in B. calyciflorus (~2 d), especially following periods of high resource levels.” (Fontaine and Gonzalez 2005)
+
+Additional points to address:
+Resonance and synchrony of environmental variability and temporal structure?
+The Moran effect---inflationary effects of environmental autocorrelation
+
+Maybe non-linear dynamics is a better way to search for stochastic variation 
+
+Cooper et al neglect to account for the chilling effect on organisms that experience temperature below thermal minimum--something I believe was referenced in Khelifa et al
+
+
+Shrode et al--effects on reproduction if mother experienced fluctuating environment
+
+Barfield 1978--classifies “random” category of variation treatment  as being simple “widely fluctuating temperatures reaching both temperature extremes for S.frugiperda...utilizing many temperatures lying outside the linear portion of the temperature-development curve for this species”
+How are Kingsolver 2015 and Khelifa et al different?--parse through this
+
+Liu et al--modeled the effects of diurnal square vs. sine variation across 26 species but data is not really usable and excluded because it was not an experimental study--essentially a meta analysis but should definitely be referenced in the body of this draft
+
+Petchey et al 2002 for more definition of autocorrelation in intro
+
+Removed Holt 2003 because while it is good for background and theoretical foundation, there is not species listed to associate a generation time with and it is not an experimental study 
+
+Also removed Miramontes et al-- again, unclear what they were actually manipulating and no information on the fluctuation duration
+
+Removed Hancock again because of modeling limited information about periodicity of fluctuation
+
