@@ -17,15 +17,19 @@ slimdays_GTfp<-filter(var_raw, generation_time_standardized_days < 90, flux_peri
 \tableofcontents
 
 \newpage
-# Abstract 
 
+# Acknowledgements 
+This work would not have been possible without the ingenuity and dedication of Dr. Mary O'Connor, Dr. Joey Bernhardt, Dr. Jacob Usinowicz, and Dr. Sam Fey. Without their guidance and support, this project would have been impossible. I would also like to thank the CIEE Variability working group for their willingness to let a novice take on part of their project goals. Thank you to Matt and Ellen Cutts, for without their kindness in the midst of a pandemic, there would have been no place to complete this work. The biggest thank you to my sister, Elizabeth, and her patience in listening to be babble about this work. Lastly, thank you the Reed College Biology Department and the Arch and Fran Diack Student Field Research Award for supporting this research.
+
+# Abstract 
 Climate change continues to push the environment and its inhabitants to the brink of their limits, albeit thermally or spatially, highlighting the importance of organisms' ability to cope in a more variable, unreliable, and stochastic world. While recent studies have demonstrated that increasing the non-linearity of thermal patterns is more detrimental to organismal performance than simply increases in the temperature (Vasseur et al 2014), there still remains a lack of agreement in the field of ecology as to how both variation and variation type influences biological responses at all levels of biological organization. Here, we aim to describe patterns of variability study in the field of ecology across all levels of organization, from changes in amplitude to changes in the predictability of variation, and the contrast environmental variation studies between different levels of organization. 
 
 
-
 # Main objective 
-
 To summarize current field of environmental variation across all levels of biological organization and the pitfalls of current inquiries
+
+
+
 \newpage
 
 # Introduction
@@ -151,4 +155,4 @@ Most studies were concentrated at a finer scale that the ranges of generation ti
 \newpage
 # Conclusions
 
-The preliminary findings in these two particular sets of literature
+The preliminary findings in these two particular sets of literature suggest disparities in how variation is pertinent to different scales of biological organization. While studies spanned from the organismal level to the community level, few studies featured organisms with generation times of less than <
